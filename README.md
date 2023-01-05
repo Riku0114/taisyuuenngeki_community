@@ -1,8 +1,5 @@
 # 大衆演劇コミュニティ
 
-## 実装機能リスト
-https://docs.google.com/spreadsheets/d/1sh6XSnKz6rDaeGtIvEdFERl_7WWKiZ-onyl-O0SUtNg/edit?usp=sharing
-
 ## サイト概要
 ### サイトテーマ
 大衆演劇のコミュニティサイト
