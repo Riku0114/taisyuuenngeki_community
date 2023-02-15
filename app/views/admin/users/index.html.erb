@@ -1,0 +1,47 @@
+<div class="card-list-container py-5">
+   <% @users.each do |users| %>
+   <div class="card image_size mx-auto shadow-lg">
+      <div class="card-body">
+         <div class="row">
+            <div class="col-6">
+               <p>
+                  <%= link_to admin_user_path(users.id), class: "text-dark" do %>
+                     <span><i class="fas fa-user"></i></span> <%= users.name %>
+                  <% end %>
+               </p>
+            </div>
+            <div class="col-6">
+               <p>
+                  <%= link_to admin_user_path(users.id), class: "btn btn-success btn-sm" do %>
+                     詳細
+                  <% end %>
+               </p>
+            </div>
+            <div class="col-12">
+               <p>
+                  <%= users.introduction %>
+               </p>
+            </div>
+            <div class="col-12">
+               <p>
+                  <%= users.email %>
+               </p>
+            </div>
+            <div class="col-12">
+               <p>
+                  退会ステータス
+                     <% if users.is_deleted == false %>
+                  有効
+                     <% else users.is_deleted == true %>
+                  退会
+                     <% end %>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <% end %>
+   <div class="col-12 pt-5 ">
+      <%= paginate @users, theme: 'twitter-bootstrap-4' %>
+   </div>
+</div>

@@ -1,0 +1,25 @@
+<div class = "container">
+	<div class="wrapper">
+		<h3 class="form-signin-heading pt-5">編集</h3>
+		<hr class="colorgraph"><br>
+		<div class="">
+		   <%= link_to "投稿を削除", post_image_path(@post_image.id), method: :delete, class: "btn btn-success btn-sm" %>
+		</div>
+		<%= form_with model: @post_image, url: post_image_path(@post_image.id) do |f| %>
+		<div class="pt-4">
+		   劇団名(空白無し)
+	      <%= f.text_field :gekidann_name, class: "form-control" %>
+		</div>
+		<div class="pt-4">
+		   役者名(空白無し)
+		   <%= f.text_field :yakusya_name, class: "form-control" %>
+		</div>
+		<div class="pt-4">
+         <%= f.text_area :post_content, class: "form-control" %>
+      </div>
+      <div class="pt-4">
+		   <%= f.submit "編集する", class: "btn btn-lg btn-success btn-block" %>
+		</div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<div class = "container">
+	<div class="wrapper">
+		<h3 class="form-signin-heading pt-5">編集</h3>
+		<hr class="colorgraph"><br>
+		<div class="">
+		   <%= link_to "削除する", post_image_comment_path(@comment.id), method: :delete, class: "btn btn-success btn-sm" %>
+		</div>
+		<%= form_with model: @comment, url: post_image_comment_path(@comment.id) do |f| %>
+		<div class="pt-4">
+		   <%= f.text_area :comment_content, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+		</div>
+      <div class="pt-4">
+		   <%= f.submit "編集する", class: "btn btn-lg btn-success btn-block" %>
+		</div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,108 @@
+<div class="jumbotron text-center bg-light ">
+   <% if user_signed_in? %>
+   <% else %>
+   <div class="text-success pb-5">
+      投稿、コメント、いいねをするには<br/>
+      ログインまたは新規登録をして下さい<br/>
+   </div>
+   <% end %>
+   <h2>大衆演劇コミュニティ</h2>
+</div>
+<div class="jumbotron text-center text-light bg-success">
+   <h3>役者　投稿数ランキング</h3>
+</div>
+<table class="table">
+   <tbody>
+      <% @yakusya_names.each do |yakusya_name| %>
+      <tr>
+         <td></td>
+         <td class="h4"><%= @yakusya %></td>
+         <td class=" text-center"><%= yakusya_name[0] %></td>
+         <td class=" text-center"><%= yakusya_name[1] %>件の投稿</td>
+         <% @yakusya += 1 %>
+         <% end %>
+      </tr>
+   </tbody>
+</table>
+<div class="jumbotron text-center  text-light bg-success">
+   <h3>劇団　投稿数ランキング</h3>
+</div>
+<table class="table">
+   <tbody>
+      <% @gekidann_names.each do |gekidann_name| %>
+      <tr>
+         <td></td>
+         <td class="h4"><%= @gekidann %></td>
+         <td class=" text-center"><%= gekidann_name[0] %></td>
+         <td class=" text-center"><%= gekidann_name[1] %>件の投稿</td>
+         <% @gekidann += 1 %>
+         <% end %>
+      </tr>
+   </tbody>
+</table>
+<div class="jumbotron text-center  text-light bg-success">
+   <h3>いいね数の多い投稿</h3>
+</div>
+<div class="card-list-container py-5">
+   <% @post_image_favorite_ranks.each do |post_images| %>
+   <div class="card image_size mx-auto mt-4 shadow-lg ">
+      <div class="card-header">
+         <div class="row">
+            <% post_images.images.each do |images| %>
+            <div class='col-6 p-1'>
+            <%= link_to post_image_path(post_images.id) do %>
+               <%= image_tag images, class: "index_image" %>
+            <% end %>
+            </div>
+            <% end %>
+         </div>
+      </div>
+      <div class="card-body">
+         <div class="row">
+            <div class="col-12">
+               <p class="card-title">
+                  <%= link_to user_path(post_images.user.id), class: "text-dark" do %>
+                     <span><i class="fas fa-user"></i></span><%= post_images.user.name %>
+                  <% end %>
+               </p>
+            </div>
+            <div class="col-12">
+               <p class="card-title">
+                  劇団名　<%= post_images.gekidann_name %>
+               </p>
+               <p class="card-title">
+                  役者名　<%= post_images.yakusya_name %>
+               </p>
+               <p class="card-text">
+                  　<%= post_images.post_content %>
+               </p>
+            </div>
+            <div class="col-4 mt-4">
+               <% if user_signed_in? %>
+               <% if post_images.favorited_by?(current_user) %>
+               <p>
+                  <%= link_to post_image_favorites_path(post_images), method: :delete, class: "text-dark" do %>
+                     <span class="text-danger">♥</span><%= post_images.favorites.count %> いいね
+                  <% end %>
+               <% else %>
+               <p>
+                  <%= link_to post_image_favorites_path(post_images), method: :post, class: "text-dark" do %>
+                     ♡<%= post_images.favorites.count %> いいね
+                  <% end %>
+               <% end %>
+               <% elsif %>
+               <p>
+                  ♡<%= post_images.favorites.count %> いいね
+               <% end %>
+               </p>
+            </div>
+            <div class="col-8 mt-4">
+               <p>
+                  <%= link_to "#{post_images.comments.count} コメント", post_image_path(post_images.id), class: "text-dark" %>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <% end %>
+</div>

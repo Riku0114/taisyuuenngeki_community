@@ -1,0 +1,25 @@
+<div class = "container">
+	<div class="wrapper">
+		<h3 class="form-signin-heading pt-5">投稿</h3>
+		<hr class="colorgraph"><br>
+		<%= form_with model: @post_image, url: post_images_path do |f| %>
+		<div class="">
+		   <%= f.file_field :images, multiple: true, class: "form-control-file" %>
+		</div>
+		<div class="pt-4">
+		   劇団名
+	      <%= f.text_field :gekidann_name, placeholder: "(空白無し)", class: "form-control" %>
+		</div>
+		<div class="pt-4">
+		   役者名
+		   <%= f.text_field :yakusya_name, placeholder: "(空白無し)", class: "form-control" %>
+		</div>
+		<div class="pt-4">
+         <%= f.text_area :post_content, placeholder: "投稿内容", class: "form-control" %>
+      </div>
+      <div class="pt-4">
+		   <%= f.submit "投稿する", class: "btn btn-lg btn-success btn-block" %>
+		</div>
+		<% end %>
+	</div>
+</div>

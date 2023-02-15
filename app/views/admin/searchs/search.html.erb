@@ -1,0 +1,34 @@
+
+<div>
+   <% @post_images.each do |post_images| %>
+   <div>
+      <%= link_to admin_user_path(post_images.user.id) do %>
+         <%= post_images.user.name %>
+      <% end %>
+   </div>
+   <div>
+      <% post_images.images.each do |images| %>
+        <%= link_to admin_post_image_path(post_images.id) do %>
+          <%= image_tag images, class: "index_image" %>
+        <% end %>
+      <% end %>
+   </div>
+   <div>
+      劇団名
+      <%= post_images.gekidann_name %>
+   </div>
+   <div>
+      役者名
+      <%= post_images.yakusya_name %>
+   </div>
+   <div>
+      投稿内容
+      <%= post_images.post_content %>
+   </div>
+      <p>
+         ♡<%= post_images.favorites.count %> いいね
+      </p>
+   <%= link_to "#{post_images.comments.count} コメント", admin_post_image_path(post_images.id) %>
+   <% end %>
+</div>
+<%= paginate @post_images %>

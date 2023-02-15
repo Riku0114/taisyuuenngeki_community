@@ -1,0 +1,25 @@
+<div class = "container">
+	<div class="wrapper">
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+		<form action="" method="post" name="Login_Form" class="form-signin">       
+		   <h3 class="form-signin-heading pt-5">新規登録</h3>
+			<hr class="colorgraph"><br>
+            ニックネーム<br />
+            <%= f.text_field :name, class: "form-control" %>
+			   メールアドレス
+			   <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+			   パスワード
+            <% if @minimum_password_length %>
+               <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+			   パスワード　確認<br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+		      <%= f.submit "新規登録", class: "btn btn-lg btn-success btn-block" %>
+			   <% end %>
+			   <%= link_to "ログイン", new_user_session_path %>
+            <%= link_to "TOPページ", root_path %>
+		</form>			
+	</div>
+</div>
